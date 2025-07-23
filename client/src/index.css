@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(120, 100%, 50%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(120, 100%, 50%);
+  --card: hsl(240, 3.7%, 15.9%);
+  --card-foreground: hsl(120, 100%, 50%);
+  --border: hsl(120, 100%, 50%);
+  --input: hsl(240, 10%, 3.9%);
+  --primary: hsl(120, 100%, 50%);
+  --primary-foreground: hsl(240, 10%, 3.9%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(120, 100%, 50%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(120, 100%, 50%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(120, 100%, 50%);
+  --radius: 0.5rem;
+  
+  /* Terminal colors */
+  --terminal-bg: hsl(0, 0%, 4%);
+  --terminal-green: hsl(120, 100%, 50%);
+  --terminal-gray: hsl(0, 0%, 20%);
+  --terminal-yellow: hsl(60, 100%, 50%);
+  
+  /* Rarity colors */
+  --rarity-normal: hsl(0, 0%, 53%);
+  --rarity-rare: hsl(225, 73%, 57%);
+  --rarity-legendary: hsl(30, 100%, 50%);
+  --rarity-unique: hsl(348, 83%, 47%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-mono antialiased bg-[var(--terminal-bg)] text-[var(--terminal-green)];
+    font-family: Monaco, Menlo, Consolas, monospace;
+  }
+}
+
+@layer components {
+  .terminal-border {
+    border: 2px solid var(--terminal-green);
+  }
+  
+  .terminal-cursor::after {
+    content: '█';
+    animation: blink 1s infinite;
+  }
+  
+  .scan-lines {
+    background: linear-gradient(transparent 50%, rgba(0, 255, 0, 0.03) 50%);
+    background-size: 100% 4px;
+  }
+  
+  .glow {
+    box-shadow: 0 0 10px var(--terminal-green);
+  }
+  
+  .rarity-glow-normal { 
+    box-shadow: 0 0 8px var(--rarity-normal); 
+  }
+  
+  .rarity-glow-rare { 
+    box-shadow: 0 0 8px var(--rarity-rare); 
+  }
+  
+  .rarity-glow-legendary { 
+    box-shadow: 0 0 8px var(--rarity-legendary); 
+  }
+  
+  .rarity-glow-unique { 
+    box-shadow: 0 0 8px var(--rarity-unique); 
+  }
+  
+  .tab-button.active {
+    background-color: var(--terminal-green);
+    color: var(--terminal-bg);
+  }
+  
+  .tab-button:not(.active) {
+    color: var(--terminal-green);
+  }
+  
+  .tab-button:not(.active):hover {
+    background-color: var(--terminal-gray);
+  }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--terminal-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--terminal-green);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--terminal-yellow);
+}
