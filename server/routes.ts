@@ -33,7 +33,7 @@ Provide a comprehensive explanation that includes:
 Format your response as clear, engaging content suitable for learning. Make it thorough but accessible for the specified difficulty level.`;
 
       const response = await openai.chat.completions.create({
-        model: "gpt-4o",
+        model: "gpt-4o-mini",
         messages: [
           { role: "system", content: "You are an expert educator who explains complex topics clearly and engagingly." },
           { role: "user", content: prompt }
@@ -70,7 +70,7 @@ Scoring criteria:
 - Use of appropriate terminology (10%)`;
 
       const response = await openai.chat.completions.create({
-        model: "gpt-4o",
+        model: "gpt-4o-mini",
         messages: [
           { role: "system", content: "You are an expert educator who provides fair, constructive assessment." },
           { role: "user", content: prompt }
@@ -111,7 +111,7 @@ Respond in JSON format:
 Make questions progressively challenging and cover key concepts.`;
 
       const response = await openai.chat.completions.create({
-        model: "gpt-4o",
+        model: "gpt-4o-mini",
         messages: [
           { role: "system", content: "You are an expert quiz creator who designs fair, educational assessments." },
           { role: "user", content: prompt }
@@ -148,7 +148,7 @@ Respond in JSON format:
 Include a variety of difficulty levels from basic facts to subtle distinctions.`;
 
       const response = await openai.chat.completions.create({
-        model: "gpt-4o",
+        model: "gpt-4o-mini",
         messages: [
           { role: "system", content: "You are an expert educator creating rapid-fire assessment questions." },
           { role: "user", content: prompt }
@@ -182,7 +182,7 @@ Include the AI explanation, user understanding, trial results, and create connec
 Format as a detailed markdown document suitable for a knowledge vault.`;
 
       const response = await openai.chat.completions.create({
-        model: "gpt-4o",
+        model: "gpt-4o-mini",
         messages: [
           { role: "system", content: "You are creating a comprehensive knowledge archive entry." },
           { role: "user", content: prompt }
@@ -215,7 +215,7 @@ Respond in JSON format:
 }`;
 
       const response = await openai.chat.completions.create({
-        model: "gpt-4o", 
+        model: "gpt-4o-mini", 
         messages: [
           { role: "system", content: "You are an expert knowledge organizer and topic categorization specialist." },
           { role: "user", content: prompt }
