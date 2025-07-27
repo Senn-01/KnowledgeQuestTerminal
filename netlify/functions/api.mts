@@ -7,7 +7,9 @@ const openai = new OpenAI({
 
 export default async (req: Request, context: Context) => {
   const url = new URL(req.url);
-  const path = url.pathname.replace('/.netlify/functions/api', '');
+  // Extract the API endpoint from the URL
+  // e.g., /.netlify/functions/api?endpoint=explain
+  const endpoint = url.searchParams.get('endpoint');
   
   if (req.method !== 'POST') {
     return new Response('Method not allowed', { status: 405 });
@@ -25,21 +27,24 @@ export default async (req: Request, context: Context) => {
   try {
     const body = await req.json();
 
-    switch (path) {
-      case '/ai/explain':
+    switch (endpoint) {
+      case 'explain':
         return handleExplain(body);
-      case '/ai/evaluate':
+      case 'evaluate':
         return handleEvaluate(body);
-      case '/ai/quiz':
+      case 'quiz':
         return handleQuiz(body);
-      case '/ai/lightning':
+      case 'lightning':
         return handleLightning(body);
-      case '/ai/vault':
+      case 'vault':
         return handleVault(body);
-      case '/ai/categorize':
+      case 'categorize':
         return handleCategorize(body);
       default:
-        return new Response('Not found', { status: 404 });
+        return new Response(JSON.stringify({ error: 'Unknown endpoint: ' + endpoint }), { 
+          status: 404,
+          headers: { 'Content-Type': 'application/json' }
+        });
     }
   } catch (error) {
     console.error('API Error:', error);
@@ -259,6 +264,4 @@ Respond in JSON format:
   });
 }
 
-export const config: Config = {
-  path: "/api/*"
-};
+// No custom path needed - function will be available at /.netlify/functions/api

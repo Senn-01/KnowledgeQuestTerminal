@@ -1,7 +1,9 @@
 import type { LearningSession, QuizQuestion, LightningQuestion } from '../types';
 
 const apiRequest = async (endpoint: string, data: any) => {
-  const response = await fetch(`/api${endpoint}`, {
+  // Convert endpoint like '/ai/explain' to 'explain'
+  const functionEndpoint = endpoint.replace('/ai/', '');
+  const response = await fetch(`/.netlify/functions/api?endpoint=${functionEndpoint}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
