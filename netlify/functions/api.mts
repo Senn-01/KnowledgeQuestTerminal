@@ -2,7 +2,7 @@ import type { Context, Config } from "@netlify/functions";
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey: Netlify.env.get("OPENAI_API_KEY") || ''
+  apiKey: process.env.OPENAI_API_KEY || ''
 });
 
 export default async (req: Request, context: Context) => {
@@ -11,6 +11,15 @@ export default async (req: Request, context: Context) => {
   
   if (req.method !== 'POST') {
     return new Response('Method not allowed', { status: 405 });
+  }
+
+  // Check if API key is available
+  if (!process.env.OPENAI_API_KEY) {
+    console.error('OPENAI_API_KEY is not set');
+    return new Response(JSON.stringify({ error: 'OpenAI API key not configured' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 
   try {
