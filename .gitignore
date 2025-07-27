@@ -54,3 +54,7 @@ replit.nix
 # Database
 *.sqlite
 *.db
+
+# Netlify
+.netlify
+netlify/functions/.cache

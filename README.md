@@ -44,8 +44,8 @@
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/knowledge-quest-terminal.git
-cd knowledge-quest-terminal
+git clone https://github.com/Senn-01/KnowledgeQuestTerminal.git
+cd KnowledgeQuestTerminal
 ```
 
 2. Install dependencies:
@@ -64,7 +64,7 @@ export OPENAI_API_KEY="your-openai-api-key-here"
 npm run dev
 ```
 
-5. Open your browser and navigate to `http://localhost:5000`
+5. Open your browser and navigate to `http://localhost:3000`
 
 ## 🏗️ Architecture
 
@@ -122,11 +122,52 @@ knowledge-quest-terminal/
 ### Available Scripts
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
+- `npm run build:netlify` - Build for Netlify deployment
+- `npm run netlify:dev` - Run Netlify dev server locally
 - `npm run preview` - Preview production build
 
 ### Environment Variables
 - `OPENAI_API_KEY` - Your OpenAI API key for AI features
 - `DATABASE_URL` - PostgreSQL connection string (optional)
+
+## 🚀 Deployment to Netlify
+
+### Quick Deploy
+1. Fork this repository
+2. Connect your GitHub account to Netlify
+3. Import the project
+4. Set environment variables in Netlify dashboard:
+   - `OPENAI_API_KEY` - Your OpenAI API key
+
+### Manual Deployment
+
+1. Install Netlify CLI:
+```bash
+npm install -g netlify-cli
+```
+
+2. Login to Netlify:
+```bash
+netlify login
+```
+
+3. Initialize and deploy:
+```bash
+netlify init
+netlify deploy --prod
+```
+
+### Netlify Configuration
+The project includes a `netlify.toml` file that:
+- Builds the React frontend to `dist/client`
+- Configures serverless functions in `netlify/functions`
+- Sets up SPA routing redirects
+- Configures security headers
+
+### Environment Setup on Netlify
+1. Go to Site Settings → Environment Variables
+2. Add `OPENAI_API_KEY` with your OpenAI API key
+3. Deploy or redeploy to apply changes
 
 ## 🤝 Contributing
 
